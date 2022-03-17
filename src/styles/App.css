@@ -6,9 +6,52 @@
 #root {
     display: flex;
     justify-content: center;
+    background-color: #f3f0ff;
+    height: 100vh;
+    padding: 100px;
+    font-family: Loma, serif;
 }
+
 .App {
-    width: 800px;
+    display: flex;
+    position: relative;
+    flex-direction: column;
+    gap: 20px;
+    width: 700px;
+}
+
+.header {
+    display: flex;
+    align-items: center;
+    background-color: #9c56dc;
+    padding: 15px 10px;
+    width: 100%;
+    color: white;
+    font-weight: bold;
+    gap: 20px;
+}
+.navBarIcon {
+    display:flex;
+    justify-self: start;
+    background-image: url("../media/menu.png");
+    background-repeat: no-repeat;
+    width: 30px;
+    height: 30px;
+}
+.title {
+    display: flex;
+    width: 100%;
+    justify-self: center;
+
+}
+
+
+.todoList {
+    width: 100%;
+    background-color: white;
+    height: max-content;
+    padding: 30px 50px 50px 50px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.46);
 }
 
 .todoItem{
@@ -18,5 +61,46 @@
     margin-top: 15px;
     justify-content: space-between;
     align-items: center;
+
+}
+.leftPartTodoItem {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+.addButton {
+    padding: 20px 35px;
+    background-color: #9c56dc;
+    border-radius: 45px;
+    color: white;
+    font-weight: bold;
+    border:none;
+    box-shadow: #9c56dc 0 0 10px;
+}
+.deleteButton {
+    background-image: url("../media/trash-can.svg");
+    background-color: white;
+    background-size: cover;
+    width: 25px;
+    height: 25px;
+    outline: none;
+    border: none;
+}
+.addArea {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+
 }
 
+.inputAddTask {
+    height: 55px;
+    width: 60%;
+    padding: 20px;
+    border-radius: 40px;
+    border-style: solid;
+    border-width: 0;
+    box-shadow: #9c56dc 0 0 10px;
+}

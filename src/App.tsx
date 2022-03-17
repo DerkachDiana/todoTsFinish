@@ -1,21 +1,37 @@
-import React, { useState } from 'react';
-import Counter from './components/Counter';
+import React, { ChangeEvent, useState } from 'react';
 import './styles/App.css';
 import TodoItem from './components/TodoItem';
+import TodoList from './components/TodoList';
+import HeaderComponent from './components/HeaderComponent';
+import Button from './components/Button';
+import AddArea from './components/AddArea';
 
-interface TodoItems {
-     id: string
+export interface Task {
+    id: string;
     text: string;
     checked: boolean;
 }
 
+
+// interface Tasks extends Array<Task>{};
+
 function App()  {
-  const [todoItems, setTodoItems] = useState<TodoItems>(
-    { id: "1", text: "Do nothing", checked: {false} }
-  );
+  const [tasks, setTasks] = useState<Task[]>([]);
+
+  const createTask = (newTask: Task): void => {
+    setTasks([...tasks, newTask])
+  }
+
+  const deleteTask = (taskToDelete: Task): void => {
+    setTasks(tasks.filter(task => task.id !== taskToDelete.id))
+  }
 
   return (
-    <TodoItem id="1" text="Do nothing" checked={false}/>
+    <div className="App">
+        <HeaderComponent/>
+        <TodoList tasks={tasks} toDelete={deleteTask}/>
+        <AddArea createNewTask={createTask}/>
+    </div>
     );
 }
 
