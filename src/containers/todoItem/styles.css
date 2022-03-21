@@ -1,0 +1,29 @@
+.todoItem{
+    display: flex;
+    gap: 10px;
+    padding: 15px;
+    margin-top: 15px;
+    justify-content: space-between;
+    align-items: center;
+
+}
+.leftPartTodoItem {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+
+.deleteButton {
+    background-image: url("../../media/trash-can.svg");
+    background-color: white;
+    background-size: cover;
+    width: 25px;
+    height: 25px;
+    outline: none;
+    border: none;
+}
+
+.todoText {
+    padding: 5px 10px;
+}
+

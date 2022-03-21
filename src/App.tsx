@@ -1,36 +1,28 @@
-import React, { ChangeEvent, useState } from 'react';
+import React, { useState } from 'react';
 import './styles/App.css';
-import TodoItem from './components/TodoItem';
-import TodoList from './components/TodoList';
-import HeaderComponent from './components/HeaderComponent';
-import Button from './components/Button';
-import AddArea from './components/AddArea';
+import { HeaderComponent } from './components/HeaderComponent';
+import { TodoListContainer } from './containers/todoList/todoList.container';
 
-export interface Task {
-    id: string;
-    text: string;
-    checked: boolean;
-}
+const App = () =>  {
+  const [isEntry, setIsEntry] = useState<boolean> (false);
 
+  // TODO: create main component get rid of state in app
+  // const test = (id: string) => {
+  //   // todo reduce
+  //   const a = tasks.find(task => task.id === id)
+  //   // todo change checked to different value
+  //   // todo set new todos
+  // }
 
-// interface Tasks extends Array<Task>{};
-
-function App()  {
-  const [tasks, setTasks] = useState<Task[]>([]);
-
-  const createTask = (newTask: Task): void => {
-    setTasks([...tasks, newTask])
-  }
-
-  const deleteTask = (taskToDelete: Task): void => {
-    setTasks(tasks.filter(task => task.id !== taskToDelete.id))
+  const isEntryHandler = (isEntry: boolean): void => {
+    console.log("in entryHandler " + isEntry)
+    setIsEntry(isEntry)
   }
 
   return (
     <div className="App">
-        <HeaderComponent/>
-        <TodoList tasks={tasks} toDelete={deleteTask}/>
-        <AddArea createNewTask={createTask}/>
+        <HeaderComponent isEntryHandler={isEntryHandler}/>
+        <TodoListContainer isEntry={isEntry}/>
     </div>
     );
 }

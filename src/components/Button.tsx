@@ -1,4 +1,5 @@
-import React, {useState} from 'react';
+import React from 'react';
+import { ReactComponent as DeleteIcon } from "../media/trash-can.svg"
 
 interface ButtonProps {
   type: string,
@@ -6,12 +7,13 @@ interface ButtonProps {
 }
 
 const Button = (props: ButtonProps) => {
-
   return (
     (props.type === "delete") ? (
-      <input type="button" className="deleteButton" onClick={props.onClick}/>
+      <div className="deleteButton" onClick={props.onClick}>
+        <DeleteIcon/>
+      </div>
     ) : (
-      <input type="button" className="addButton" onClick={props.onClick} value="+ New task" />
+      <div className="addButton" onClick={props.onClick} >+ New task </div>
     )
   )
 }
