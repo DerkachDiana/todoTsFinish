@@ -3,7 +3,7 @@ import TaskService from './TaskService.js'
 class TaskController {
     async create(req, res) {
         try {
-            const {checked, text} = req.body
+            const {isChecked, text} = req.body
             const task = await TaskService.create(req.body)
             res.status(200).json(task)
         } catch (e) {

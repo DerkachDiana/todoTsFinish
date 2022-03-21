@@ -9,16 +9,17 @@ interface AddAreaContainerProps {
 export const AddAreaContainer = ({createNewTask}: AddAreaContainerProps) => {
   const [text, setText] = useState<string>('');
 
-
-
   const addNewTask = (): void => {
+    if (text.trim() === "") {
+      return
+    }
     const newTask: Task = {
-      id: (Date.now()).toString(),
+      _id: Date.now().toString(),
       text: text,
       isChecked: false
     }
     createNewTask(newTask)
-    setText(text)
+    setText('')
   }
   const setTaskHandler = (event: string): void => {
       setText(event);

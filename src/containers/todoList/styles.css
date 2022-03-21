@@ -9,11 +9,13 @@
 .slideRight {
     position: relative;
     transform: translate(-100%, 0);
-    transition: transform 3s;
+    opacity: 0;
+    transition: transform 3s, opacity 2s;
 }
 
 .slideLeft {
     position: relative;
     transform: translate(0, 0);
-    transition: transform 3s;
+    opacity: 100%;
+    transition: transform 3s, opacity 2s;
 }

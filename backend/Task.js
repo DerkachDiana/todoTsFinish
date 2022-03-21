@@ -1,7 +1,7 @@
 import mongoose from 'mongoose'
 
 const Task = new mongoose.Schema({
-    checked: {type: Boolean, required: true},
+    isChecked: {type: Boolean, required: true},
     text: {type: String, required: true}
 })
 

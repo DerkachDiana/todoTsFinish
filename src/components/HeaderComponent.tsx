@@ -16,9 +16,7 @@ export const HeaderComponent = (props: HeaderComponentProps): JSX.Element => {
   }
   return (
     <div className="header">
-      <div className="navBarIcon" onClick={setEntryHandler}>
-        <MenuIcon/>
-      </div>
+      <MenuIcon className="navBarIcon" onClick={setEntryHandler}/>
       <div className="title">{headerText}</div>
     </div>
   );

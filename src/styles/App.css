@@ -7,17 +7,10 @@
     display: flex;
     justify-content: center;
     background-color: #f3f0ff;
-    height: 100vh;
+    min-height: 100vh;
+    height: max-content;
     padding: 100px;
     font-family: Loma, serif;
-}
-
-.App {
-    display: flex;
-    position: relative;
-    flex-direction: column;
-    gap: 20px;
-    width: 700px;
 }
 
 .header {
@@ -33,10 +26,10 @@
 .navBarIcon {
     display:flex;
     justify-self: start;
-    background-image: url("../media/menu.png");
     background-repeat: no-repeat;
     width: 30px;
     height: 30px;
+    filter: invert(100%);
 }
 .title {
     display: flex;
@@ -44,6 +37,4 @@
     justify-self: center;
 
 }
-
-
 

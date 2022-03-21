@@ -21,7 +21,7 @@ export const TodoListComponent = (props: TodoListComponentProps) => {
           <TodoItemContainer
             task={task}
             toDelete={toDelete}
-            key={task.id}
+            key={task._id}
           />
         )}
       </div>
