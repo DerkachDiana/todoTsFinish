@@ -4,15 +4,15 @@ import { TodoListContainer } from '../todoList/todoList.container';
 
 interface AppContainerComponentProps {
   isEntryHandler: (isEntry: boolean) => void,
-  isEntry: boolean
+  isEntryAnimation: boolean
 }
 
 export const AppContainerComponent = (props: AppContainerComponentProps) => {
-  const { isEntryHandler, isEntry } = props
+  const { isEntryHandler, isEntryAnimation } = props
   return (
     <div className="appContainer">
       <HeaderComponent isEntryHandler={isEntryHandler}/>
-      <TodoListContainer isEntry={isEntry}/>
+      <TodoListContainer isEntryAnimation={isEntryAnimation}/>
     </div>
   );
 };

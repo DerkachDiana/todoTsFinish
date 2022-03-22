@@ -13,7 +13,6 @@ interface TodoListComponentProps {
 
 export const TodoListComponent = (props: TodoListComponentProps) => {
   const { tasks, toDelete, createTask, animationType } = props
-
   return (
     <div className="todoList">
       <div className={animationType()}>
@@ -22,8 +21,7 @@ export const TodoListComponent = (props: TodoListComponentProps) => {
             task={task}
             toDelete={toDelete}
             key={task._id}
-          />
-        )}
+          />)}
       </div>
       <AddAreaContainer createNewTask={createTask} />
     </div>

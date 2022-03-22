@@ -11,12 +11,11 @@ interface TodoItemContainerProps {
 export const TodoItemContainer = (props: TodoItemContainerProps) => {
   const { task, toDelete } = props
 
-  const deleteTask = (task: Task) : void => {
+  const deleteTask = (task: Task): void => {
     toDelete(task)
   }
 
-  const toCrossOut: HTMLInputElement | null = document.querySelector('.todoText');
-  const crossOut = (checkboxElement: ChangeEvent<HTMLInputElement>) : void => {
+  const crossOut = (checkboxElement: ChangeEvent<HTMLInputElement>): void => {
     if (checkboxElement.target.parentElement) {
       (checkboxElement.target.checked)
         ? checkboxElement.target.parentElement.style.textDecoration = "line-through"
@@ -27,7 +26,6 @@ export const TodoItemContainer = (props: TodoItemContainerProps) => {
   const saveTaskAfterEdit = async(task: Task): Promise<void> => {
     try {
       await TodoAPI.updateTasks(task)
-      console.log('updated!')
     } catch(error) {
       console.log('saveTaskAfterEdit error ' + error)
     }

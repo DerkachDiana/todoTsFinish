@@ -5,22 +5,27 @@ import TodoAPI from '../../TodoAPI';
 
 
 interface TodoListContainerProps {
-  isEntry: boolean
+  isEntryAnimation: boolean
 }
 
 export const TodoListContainer =  (props: TodoListContainerProps) => {
-  const { isEntry } = props
+  const { isEntryAnimation } = props
   const [tasks, setTasks] = useState<Task[]>([]);
 
-const taskLoader = async () => {
-  try {
-    const pulledTask = await TodoAPI.getAllTasks();
-    pulledTask?.forEach(task => tasks.push(task));
-  } catch(error) {
-    console.log('TodoListContainer Error ' + error)
+  useEffect(() => {
+    const taskLoader = async (): Promise<void> => {
+    try {
+      const pulledTask = await TodoAPI.getAllTasks();
+      if (pulledTask) {
+        setTasks(pulledTask)
+      }
+    } catch(error) {
+      console.log('TodoListContainer Error ' + error)
+    }
   }
-}
-  document.addEventListener("DOMContentLoaded", taskLoader);
+    taskLoader()
+  }, [])
+
   const createTask = async (newTask: Task): Promise<void> => {
     try {
       await TodoAPI.createTask(newTask);
@@ -41,7 +46,7 @@ const taskLoader = async () => {
   }
   const animationType = (): string => {
     return (
-      (isEntry) ? ("slideRight") : ("slideLeft")
+      (isEntryAnimation) ? ("slideRight") : ("slideLeft")
     )
 
   }

@@ -9,6 +9,6 @@ export const AppContainerContainer = () => {
     setIsEntry(isEntry)
   }
   return (
-    <AppContainerComponent isEntryHandler={isEntryHandler} isEntry={isEntry}/>
+    <AppContainerComponent isEntryHandler={isEntryHandler} isEntryAnimation={isEntry}/>
   );
 };
