@@ -2,6 +2,7 @@ import React, { ChangeEvent } from 'react';
 import Button from '../../components/Button'
 import { Task } from '../../types/Task';
 import "./styles.css"
+import { NavigateFunction, useNavigate } from 'react-router-dom';
 
 interface TodoItemComponentProps {
   task: Task,
@@ -10,7 +11,17 @@ interface TodoItemComponentProps {
   saveTaskAfterEdit: (task: Task) => Promise<void>
 }
 export const TodoItemComponent = (props: TodoItemComponentProps) => {
-  const {task, toDelete, crossOutTaskText, saveTaskAfterEdit} = props
+  const {task, toDelete, crossOutTaskText, saveTaskAfterEdit } = props
+  const navigate: NavigateFunction = useNavigate()
+
+  const navigateToDetails = (): void => {
+    navigate(`/TaskDetails/${task._id}`, {
+      state: {
+        id: task._id,
+        text: task.text
+      }
+    })
+  }
 
   return (
     <div className="todoItem">
@@ -19,9 +30,14 @@ export const TodoItemComponent = (props: TodoItemComponentProps) => {
           type="checkbox"
           onChange={(e) => crossOutTaskText(e)}
         />
-        <div className="todoText" contentEditable={true} onBlur={(e) => saveTaskAfterEdit({...task, text: e.target.innerHTML})}>{task.text}</div>
+        <div
+          onClick={navigateToDetails}
+           className="todoText"
+           contentEditable={true}
+           onBlur={(e) => saveTaskAfterEdit({...task, text: e.target.innerHTML})}>
+          {task.text}
+        </div>
       </div>
-
       <Button type={"delete"} onClick={() => toDelete(task)}/>
     </div>
   );

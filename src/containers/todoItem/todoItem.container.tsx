@@ -1,7 +1,7 @@
-import React, { ChangeEvent } from 'react';
+import React, { ChangeEvent, useEffect } from 'react';
 import { Task } from '../../types/Task';
 import { TodoItemComponent } from './todoItem.component'
-import TodoAPI from '../../TodoAPI';
+import TodoAPI from '../../service/API/TodoAPI';
 
 interface TodoItemContainerProps {
   task: Task,
@@ -14,7 +14,6 @@ export const TodoItemContainer = (props: TodoItemContainerProps) => {
   const deleteTask = (task: Task): void => {
     toDelete(task)
   }
-
   const crossOut = (checkboxElement: ChangeEvent<HTMLInputElement>): void => {
     if (checkboxElement.target.parentElement) {
       (checkboxElement.target.checked)

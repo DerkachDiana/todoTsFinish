@@ -10,9 +10,9 @@ interface AppContainerComponentProps {
 export const AppContainerComponent = (props: AppContainerComponentProps) => {
   const { isEntryHandler, isEntryAnimation } = props
   return (
-    <div className="appContainer">
-      <HeaderComponent isEntryHandler={isEntryHandler}/>
-      <TodoListContainer isEntryAnimation={isEntryAnimation}/>
-    </div>
+      <div className="appContainer">
+        <HeaderComponent isEntryHandler={isEntryHandler}/>
+        <TodoListContainer isEntryAnimation={isEntryAnimation} />
+      </div>
   );
 };

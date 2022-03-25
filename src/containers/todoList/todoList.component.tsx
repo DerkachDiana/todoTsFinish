@@ -16,12 +16,13 @@ export const TodoListComponent = (props: TodoListComponentProps) => {
   return (
     <div className="todoList">
       <div className={animationType()}>
-        {tasks.map(task =>
-          <TodoItemContainer
-            task={task}
-            toDelete={toDelete}
-            key={task._id}
-          />)}
+          {tasks.map(task =>
+            <TodoItemContainer
+              task={task}
+              toDelete={toDelete}
+              key={task._id}
+            />
+          )}
       </div>
       <AddAreaContainer createNewTask={createTask} />
     </div>

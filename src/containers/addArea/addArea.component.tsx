@@ -4,7 +4,6 @@ import { Task } from '../../types/Task';
 import "./styles.css"
 
 interface AddAreaProps {
-  createNewTask: (newTask: Task) => void,
   addTaskByPressEnter: (e: React.KeyboardEvent) => void,
   addNewTask: () => void,
   text: string,
@@ -21,7 +20,9 @@ const AddAreaComponent = (props: AddAreaProps) => {
         onKeyUp={addTaskByPressEnter}
         className="inputAddTask"
         type="text"/>
-      <Button onClick={addNewTask} type={"add"} />
+      <Button onClick={ () => {
+        addNewTask()
+      }} type={"add"} />
     </div>
   );
 };

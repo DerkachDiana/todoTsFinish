@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { TodoListComponent } from './todoList.component';
 import { Task } from '../../types/Task';
-import TodoAPI from '../../TodoAPI';
+import TodoAPI from '../../service/API/TodoAPI';
+import { useDispatch, useSelector } from 'react-redux';
+import { deleteTaskAction, getTasksAction, addTaskAction } from '../../redux/action/actions';
 
 
 interface TodoListContainerProps {
@@ -10,20 +12,23 @@ interface TodoListContainerProps {
 
 export const TodoListContainer =  (props: TodoListContainerProps) => {
   const { isEntryAnimation } = props
-  const [tasks, setTasks] = useState<Task[]>([]);
+  const dispatch = useDispatch()
+  const tasks = useSelector<any>(state => state.taskReducer.tasks)
 
-  useEffect(() => {
-    const taskLoader = async (): Promise<void> => {
+  console.log('I AM HERE', tasks);
+  const getTasks = async () => {
     try {
-      const pulledTask = await TodoAPI.getAllTasks();
-      if (pulledTask) {
-        setTasks(pulledTask)
+      const tasks = await TodoAPI.getAllTasks()
+      if (tasks) {
+        dispatch(getTasksAction(tasks))
       }
-    } catch(error) {
-      console.log('TodoListContainer Error ' + error)
+    } catch (e) {
+      console.log(e);
     }
   }
-    taskLoader()
+
+  useEffect(() => {
+     getTasks()
   }, [])
 
   const createTask = async (newTask: Task): Promise<void> => {
@@ -32,8 +37,9 @@ export const TodoListContainer =  (props: TodoListContainerProps) => {
     } catch(error) {
       console.log('createTask error ' + error)
     }
-    setTasks([...tasks, newTask])
+    dispatch(addTaskAction(newTask))
   }
+
 
   const deleteTask = async (taskToDelete: Task): Promise<void> => {
     try {
@@ -42,7 +48,7 @@ export const TodoListContainer =  (props: TodoListContainerProps) => {
     } catch(error) {
       console.log('deleteTask error ' + error)
     }
-    setTasks(tasks.filter(task => task._id !== taskToDelete._id))
+    dispatch(deleteTaskAction(taskToDelete._id))
   }
   const animationType = (): string => {
     return (
@@ -53,7 +59,7 @@ export const TodoListContainer =  (props: TodoListContainerProps) => {
 
   return (
     <TodoListComponent
-      tasks={tasks}
+      tasks={tasks as Task[]}
       toDelete={deleteTask}
       createTask={createTask}
       animationType={animationType}

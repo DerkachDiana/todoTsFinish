@@ -1,8 +1,0 @@
-
-.appContainer {
-    display: flex;
-    position: relative;
-    flex-direction: column;
-    gap: 20px;
-    width: 700px;
-}

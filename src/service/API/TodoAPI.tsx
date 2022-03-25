@@ -1,9 +1,10 @@
-import { Task } from './types/Task';
+import { Task } from '../../types/Task';
 
 class TodoAPI {
   async getAllTasks(): Promise <Task[] | undefined> {
     try {
       const response = await fetch('http://localhost:5003/api/tasks/');
+      // todo response data
       return response.json()
     } catch(error) {
       console.log("getAll task" + error)

@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import AddAreaComponent from './addArea.component';
 import { Task } from '../../types/Task';
+import { useDispatch } from 'react-redux';
 
 interface AddAreaContainerProps {
   createNewTask: (newTask: Task) => void
@@ -8,7 +9,7 @@ interface AddAreaContainerProps {
 
 export const AddAreaContainer = ({createNewTask}: AddAreaContainerProps) => {
   const [text, setText] = useState<string>('');
-
+  const dispatch = useDispatch()
   const addNewTask = (): void => {
     if (text.trim() === "") {
       return
@@ -30,7 +31,6 @@ export const AddAreaContainer = ({createNewTask}: AddAreaContainerProps) => {
   return (
     <AddAreaComponent
       addNewTask={addNewTask}
-      createNewTask={createNewTask}
       addTaskByPressEnter={addTaskByPressEnter}
       text={text}
       setTaskHandler={setTaskHandler}    />
