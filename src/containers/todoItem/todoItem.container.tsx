@@ -1,7 +1,8 @@
 import React, { ChangeEvent, useEffect } from 'react';
 import { Task } from '../../types/Task';
-import { TodoItemComponent } from './todoItem.component'
-import TodoAPI from '../../service/API/TodoAPI';
+import { TodoItemComponent } from './todoItem.component';
+import { useDispatch } from 'react-redux';
+import { asyncUpdateTask } from '../../redux/thunk/thunks';
 
 interface TodoItemContainerProps {
   task: Task,
@@ -10,7 +11,7 @@ interface TodoItemContainerProps {
 
 export const TodoItemContainer = (props: TodoItemContainerProps) => {
   const { task, toDelete } = props
-
+  const dispatch = useDispatch();
   const deleteTask = (task: Task): void => {
     toDelete(task)
   }
@@ -23,11 +24,8 @@ export const TodoItemContainer = (props: TodoItemContainerProps) => {
   }
 
   const saveTaskAfterEdit = async(task: Task): Promise<void> => {
-    try {
-      await TodoAPI.updateTasks(task)
-    } catch(error) {
-      console.log('saveTaskAfterEdit error ' + error)
-    }
+    //dispatch(AsyncUpdateTask(task))
+    dispatch(asyncUpdateTask(task))
   }
 
   return (

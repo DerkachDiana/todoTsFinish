@@ -1,9 +1,11 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import { TodoListComponent } from './todoList.component';
 import { Task } from '../../types/Task';
-import TodoAPI from '../../service/API/TodoAPI';
 import { useDispatch, useSelector } from 'react-redux';
-import { deleteTaskAction, getTasksAction, addTaskAction } from '../../redux/action/actions';
+import { asyncAddTask, asyncGetTasks, asyncDeleteTask } from '../../redux/thunk/thunks';
+
+import { IAppState } from '../../redux/store';
+import { getTasksRequest } from '../../redux/action/stateActions';
 
 
 interface TodoListContainerProps {
@@ -13,14 +15,19 @@ interface TodoListContainerProps {
 export const TodoListContainer =  (props: TodoListContainerProps) => {
   const { isEntryAnimation } = props
   const dispatch = useDispatch()
-  const tasks = useSelector<any>(state => state.taskReducer.tasks)
+  const tasks = useSelector<IAppState, Task[] >(state => state.taskReducer.tasks)
+  const isLoading = useSelector<IAppState, Task[]>(state => state.taskReducer.isLoading)
+  // const isError = useSelector<IAppState, Task[]>(state => state.taskReducer.isError)
+  // const isSuccess = useSelector<IAppState, Task[]>(state => state.taskReducer.isSuccess)
+  // todo
 
-  console.log('I AM HERE', tasks);
   const getTasks = async () => {
     try {
-      const tasks = await TodoAPI.getAllTasks()
       if (tasks) {
-        dispatch(getTasksAction(tasks))
+        // todo action for request
+        dispatch(asyncGetTasks());
+
+
       }
     } catch (e) {
       console.log(e);
@@ -32,23 +39,14 @@ export const TodoListContainer =  (props: TodoListContainerProps) => {
   }, [])
 
   const createTask = async (newTask: Task): Promise<void> => {
-    try {
-      await TodoAPI.createTask(newTask);
-    } catch(error) {
-      console.log('createTask error ' + error)
-    }
-    dispatch(addTaskAction(newTask))
+    //dispatch(AsyncAddTask(newTask))
+    dispatch(asyncAddTask(newTask));
   }
 
 
   const deleteTask = async (taskToDelete: Task): Promise<void> => {
-    try {
-      console.log(taskToDelete)
-      await TodoAPI.deleteTask(taskToDelete._id)
-    } catch(error) {
-      console.log('deleteTask error ' + error)
-    }
-    dispatch(deleteTaskAction(taskToDelete._id))
+    //dispatch(AsyncDeleteTask(taskToDelete._id))
+    dispatch(asyncDeleteTask(taskToDelete._id))
   }
   const animationType = (): string => {
     return (
@@ -57,7 +55,10 @@ export const TodoListContainer =  (props: TodoListContainerProps) => {
 
   }
 
+  // todo return isLoading ? <Loading /> : your component
+
   return (
+    isLoading ? <div>Loading</div> :
     <TodoListComponent
       tasks={tasks as Task[]}
       toDelete={deleteTask}

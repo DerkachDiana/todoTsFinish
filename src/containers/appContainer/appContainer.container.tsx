@@ -11,6 +11,7 @@ export const AppContainerContainer = () => {
     setIsEntry(isEntry)
   }
   return (
+
     <AppContainerComponent isEntryHandler={isEntryHandler} isEntryAnimation={isEntry}/>
   );
 };

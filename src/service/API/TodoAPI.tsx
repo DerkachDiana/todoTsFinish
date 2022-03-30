@@ -1,17 +1,22 @@
 import { Task } from '../../types/Task';
 
+// todo add .env configuration and put url to it
+// todo add eslint
+
+
+
+
 class TodoAPI {
-  async getAllTasks(): Promise <Task[] | undefined> {
+  async getAllTasks(): Promise<Task[] | undefined> {
     try {
       const response = await fetch('http://localhost:5003/api/tasks/');
-      // todo response data
       return response.json()
     } catch(error) {
       console.log("getAll task" + error)
     }
   }
 
-  async createTask(task: Task): Promise <string | void> {
+  async createTask(task: Task): Promise <string | undefined> {
     try {
       const response = await fetch('http://localhost:5003/api/tasks', {
         method: 'POST',
@@ -39,7 +44,8 @@ class TodoAPI {
       console.log('Delete task error ', error)
     }
   }
-  async updateTasks(task: Task): Promise <string | void> {
+  async updateTasks(task: Task): Promise <string | undefined> {
+    console.log(task.text, task._id);
     try {
       const response = await fetch(`http://localhost:5003/api/tasks/`, {
         method: 'PUT',
