@@ -1,5 +1,5 @@
 import { Task } from '../../types/Task';
-
+require('dotenv').config();
 // todo add .env configuration and put url to it
 // todo add eslint
 
@@ -18,7 +18,7 @@ class TodoAPI {
 
   async createTask(task: Task): Promise <string | undefined> {
     try {
-      const response = await fetch('http://localhost:5003/api/tasks', {
+      const response = await fetch(process.env.TODO_URL ? process.env.TODO_URL.toString() : '', {
         method: 'POST',
         headers: {
           'Accept': 'application/json',
