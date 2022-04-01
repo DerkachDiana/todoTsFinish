@@ -8,13 +8,12 @@ type LocationStateType = {
 
 export const TaskDetails = () => {
   const location = useLocation();
-  const state = location.state as LocationStateType
+  const state = location.state as LocationStateType;
 
   return (
     <div>
-      <h1>{"id: " + state.id}</h1>
-      <p>{"text: " + state.text}</p>
+      <h1>{'id: ' + state.id}</h1>
+      <p>{'text: ' + state.text}</p>
     </div>
   );
 };
-

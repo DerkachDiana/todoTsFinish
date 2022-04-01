@@ -1,7 +1,7 @@
 import React, { ChangeEvent } from 'react';
-import Button from '../../components/Button'
+import MyButton from '../../components/myButton';
 import { Task } from '../../types/Task';
-import "./styles.css"
+import './styles.css';
 import { NavigateFunction, useNavigate } from 'react-router-dom';
 
 interface TodoItemComponentProps {
@@ -11,8 +11,8 @@ interface TodoItemComponentProps {
   saveTaskAfterEdit: (task: Task) => Promise<void>
 }
 export const TodoItemComponent = (props: TodoItemComponentProps) => {
-  const {task, toDelete, crossOutTaskText, saveTaskAfterEdit } = props
-  const navigate: NavigateFunction = useNavigate()
+  const { task, toDelete, crossOutTaskText, saveTaskAfterEdit } = props;
+  const navigate: NavigateFunction = useNavigate();
 
   const navigateToDetails = (): void => {
     navigate(`/TaskDetails/${task._id}`, {
@@ -20,8 +20,8 @@ export const TodoItemComponent = (props: TodoItemComponentProps) => {
         id: task._id,
         text: task.text
       }
-    })
-  }
+    });
+  };
 
   return (
     <div className="todoItem">
@@ -32,13 +32,13 @@ export const TodoItemComponent = (props: TodoItemComponentProps) => {
         />
         <div
           onClick={navigateToDetails}
-           className="todoText"
-           contentEditable={true}
-           onBlur={(e) => saveTaskAfterEdit({...task, text: e.target.innerHTML})}>
+          className="todoText"
+          contentEditable={true}
+          onBlur={(e) => saveTaskAfterEdit({ ...task, text: e.target.innerHTML })}>
           {task.text}
         </div>
       </div>
-      <Button type={"delete"} onClick={() => toDelete(task)}/>
+      <MyButton type={'delete'} onClick={() => toDelete(task)}/>
     </div>
   );
-}
+};

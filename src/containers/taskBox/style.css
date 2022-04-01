@@ -1,4 +1,12 @@
-.addArea {
+
+.appContainer {
+    display: flex;
+    position: relative;
+    flex-direction: column;
+    gap: 20px;
+    width: 700px;
+}
+.addBox {
     display: flex;
     gap: 20px;
     justify-content: center;

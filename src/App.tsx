@@ -1,19 +1,18 @@
-import React, { useState } from 'react';
+import React from 'react';
 import './styles/App.css';
-import { AppContainerContainer } from './containers/appContainer/appContainer.container';
+import { TaskBoxContainer } from './containers/taskBox/taskBox.container';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import { TaskDetails } from './pages/TaskDetalisation';
 
-
-export const App = () =>  {
+export const App = () => {
   return (
-     <BrowserRouter>
+    <BrowserRouter>
       <div className="App">
         <Routes>
-          <Route path="/" element={<AppContainerContainer />} />
+          <Route path="/" element={<TaskBoxContainer/>} />
           <Route path="/TaskDetails/:taskId" element={<TaskDetails/>} />
         </Routes>
       </div>
-     </BrowserRouter>
-    );
-}
+    </BrowserRouter>
+  );
+};

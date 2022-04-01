@@ -1,10 +1,5 @@
 import { Task } from '../../types/Task';
 import env from 'react-dotenv';
-// todo add .env configuration and put url to it
-// todo add eslint
-
-
-
 
 class TodoAPI {
   async getAllTasks(): Promise<Task[] | undefined> {
@@ -12,7 +7,7 @@ class TodoAPI {
       const response = await fetch(env.TODO_URL);
       return response.json()
     } catch(error) {
-      console.log("getAll task" + error)
+      console.log('getAll task' + error)
     }
   }
 
@@ -25,18 +20,18 @@ class TodoAPI {
           'Content-Type': 'application/json'
         },
         body: JSON.stringify({
-          "text" : task.text,
-          "isChecked": task.isChecked
+          text : task.text,
+          isChecked: task.isChecked
         })
       })
       return response.json()
-
     } catch(error) {
-      console.log("Create task" + error)
+      console.log('Create task' + error)
     }
   }
   async deleteTask (taskId: string): Promise<void> {
     try {
+      console.log(env.TODO_URL + taskId);
       await fetch(env.TODO_URL + taskId, {
         method: 'DELETE'
       })
@@ -53,14 +48,14 @@ class TodoAPI {
           'Content-type': 'application/json'
         },
         body: JSON.stringify({
-          "_id": task._id,
-          "text": task.text,
-          "isChecked": task.isChecked
+          _id: task._id,
+          text: task.text,
+          isChecked: task.isChecked
         })
       });
       return response.json();
     } catch(error) {
-      console.log("updateTasks error" + error)
+      console.log('updateTasks error' + error)
     }
   }
 }

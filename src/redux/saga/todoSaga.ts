@@ -23,18 +23,15 @@ import TodoAPI from '../../service/API/TodoAPI';
 //
 // function* getTasksWorker(): Iterator<any>{
 //   try {
-//     // todo you should see for requests
 //     yield put(getTasksRequest())
 //     const tasks = yield call(TodoAPI.getAllTasks);
 //
-//     // todo action for success
 //     yield put(getTasksSuccess(tasks));
 //     yield put(getTasksAction());
 //   } catch (error) {
 //     yield put(getTasksError());
-//     // todo action for error
-//   console.log("getTasks error " + error);
-// }
+//     console.log("getTasks error " + error);
+//   }
 // }
 //
 // export function* addTaskWorker({ newTask }: ReturnType<typeof asyncAddTask> ): Iterator<any> {
