@@ -1,6 +1,4 @@
 import { Task } from '../../../types/Task';
-import { AsyncAddTaskAT, AsyncDeleteTaskAT, AsyncGetTasksAT, AsyncUpdateTaskAT } from './sagaActionTypes';
-
 
 export enum REQUEST_TYPE_ENUM {
   GET_TASKS_REQUEST = 'GET_TASKS_REQUEST',
@@ -23,40 +21,41 @@ export enum ERROR_TYPE_ENUM {
   UPDATE_TASK_ERROR = 'UPDATE_TASK_ERROR'
 }
 
-
-export const ASYNC_GET_TASKS = "ASYNC_GET_TASKS"
-export const ASYNC_ADD_TASK = "ASYNC_ADD_TASK"
-export const ASYNC_DELETE_TASK = "ASYNC_DELETE_TASK"
-export const ASYNC_UPDATE_TASK = "ASYNC_UPDATE_TASK"
-
-
 export type GetTasksAT = {
   type: REQUEST_TYPE_ENUM.GET_TASKS_REQUEST
 }
+
 export type DeleteTaskAT = {
   type: REQUEST_TYPE_ENUM.DELETE_TASK_REQUEST
 }
+
 export type AddTaskAT = {
   type: REQUEST_TYPE_ENUM.ADD_TASK_REQUEST
 }
+
 export type UpdateTaskAT = {
   type: REQUEST_TYPE_ENUM.UPDATE_TASK_REQUEST
 }
+
 export type UpdateTaskSuccessAT = {
   type: SUCCESS_TYPE_ENUM.UPDATE_TASK_SUCCESS,
   task: Task
 }
+
 export type UpdateTaskErrorAT = {
   type: ERROR_TYPE_ENUM.UPDATE_TASK_ERROR
 }
+
 export type GetTasksSuccessAT = {
   type: SUCCESS_TYPE_ENUM.GET_TASKS_SUCCESS,
   tasks: Task[]
 }
+
 export type AddTaskSuccessAT = {
   type: SUCCESS_TYPE_ENUM.ADD_TASK_SUCCESS,
   task: Task
 }
+
 export type DeleteTaskSuccessAT = {
   type: SUCCESS_TYPE_ENUM.DELETE_TASK_SUCCESS,
   taskId: string
@@ -68,11 +67,11 @@ export type GetTasksErrorAT = {
 export type AddTaskErrorAT = {
   type: ERROR_TYPE_ENUM.ADD_TASK_ERROR
 }
+
 export type DeleteTaskErrorAT = {
   type: ERROR_TYPE_ENUM.DELETE_TASK_ERROR
 }
 
 export type TodoActions = GetTasksAT | DeleteTaskAT | AddTaskAT |
-  UpdateTaskAT | AsyncGetTasksAT | AsyncAddTaskAT | AsyncDeleteTaskAT |
-  AsyncUpdateTaskAT | GetTasksSuccessAT | AddTaskSuccessAT | DeleteTaskSuccessAT | UpdateTaskSuccessAT |
+  UpdateTaskAT | GetTasksSuccessAT | AddTaskSuccessAT | DeleteTaskSuccessAT | UpdateTaskSuccessAT |
   GetTasksErrorAT | AddTaskErrorAT | DeleteTaskErrorAT | UpdateTaskErrorAT

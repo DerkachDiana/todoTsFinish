@@ -7,53 +7,57 @@ import {
   updateTaskRequest, updateTaskSuccess
 } from '../action/stateActions';
 
-export const asyncGetTasks = () => {
+export const getTasksThunk = () => {
   return async (dispatch: Dispatch) => {
     try {
       dispatch(getTasksRequest());
       const tasks: Task[] | undefined = await TodoAPI.getAllTasks();
-      dispatch(getTasksSuccess(tasks))
+      dispatch(getTasksSuccess(tasks));
     } catch (error) {
-      dispatch(getTasksError())
-      console.log("getTasks " + error);
+      dispatch(getTasksError());
+      console.log('getTasks ' + error);
     }
-  }
-}
+  };
+};
 
-export const asyncAddTask = (newTask: Task) => {
+export const addTaskThunk = (newTask: Omit<Task, '_id'>) => {
   return async (dispatch: Dispatch) => {
+    dispatch(addTaskRequest());
+
     try {
-      dispatch(addTaskRequest());
-      await TodoAPI.createTask(newTask);
-      dispatch(addTaskSuccess(newTask));
+      const task = await TodoAPI.createTask(newTask);
+
+      if (task) {
+        dispatch(addTaskSuccess(task));
+      }
     } catch (error) {
-      dispatch(addTaskError())
-      console.log("addTask " + error);
+      dispatch(addTaskError());
+      console.log('addTask ' + error);
     }
-  }
-}
-export const asyncDeleteTask = (idTaskToDelete: string) => {
+  };
+};
+
+export const deleteTaskThunk = (idTaskToDelete: string) => {
   return async (dispatch: Dispatch) => {
     try {
-      dispatch(deleteTaskRequest())
+      dispatch(deleteTaskRequest());
       await TodoAPI.deleteTask(idTaskToDelete);
-      dispatch(deleteTaskSuccess(idTaskToDelete))
+      dispatch(deleteTaskSuccess(idTaskToDelete));
     } catch (error) {
-      dispatch(deleteTaskError())
-      console.log("deleteTask " + error);
+      dispatch(deleteTaskError());
+      console.log('deleteTask ' + error);
     }
-  }
-}
-export const asyncUpdateTask = (task: Task) => {
+  };
+};
+
+export const updateTaskThunk = (task: Task) => {
   return async (dispatch: Dispatch) => {
     try {
-      dispatch(updateTaskRequest());
       await TodoAPI.updateTasks(task);
-      console.log("updated");
-      dispatch(updateTaskSuccess(task))
+      dispatch(updateTaskSuccess(task));
     } catch (error) {
-      dispatch(updateTaskError())
-      console.log("updateTask " + error);
+      dispatch(updateTaskError());
+      console.log('updateTask ' + error);
     }
-  }
-}
+  };
+};

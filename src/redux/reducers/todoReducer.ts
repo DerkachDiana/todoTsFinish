@@ -11,7 +11,7 @@ const initialState: todoReducerType & AppStateType = {
   isLoading: false,
   isSuccess: false,
   isError: false
-}
+};
 
 export const todoReducer = (state = initialState, action: TodoActions): AppType => {
   switch (action.type) {
@@ -21,17 +21,17 @@ export const todoReducer = (state = initialState, action: TodoActions): AppType 
   case REQUEST_TYPE_ENUM.UPDATE_TASK_REQUEST: {
     state.isLoading = true;
 
-    return {...state}
+    return { ...state };
   }
   case SUCCESS_TYPE_ENUM.GET_TASKS_SUCCESS: {
     state.isLoading = false;
     state.isSuccess = true;
-    const tasks = [...action.tasks]
+    const tasks = [...action.tasks];
 
     return {
       ...state,
       tasks
-    }
+    };
   }
   case SUCCESS_TYPE_ENUM.ADD_TASK_SUCCESS: {
     state.isSuccess = true;
@@ -44,28 +44,27 @@ export const todoReducer = (state = initialState, action: TodoActions): AppType 
   case SUCCESS_TYPE_ENUM.DELETE_TASK_SUCCESS: {
     state.isLoading = false;
     state.isSuccess = true;
-    const filteredTasks = state.tasks.filter((task: Task) => task._id !== action.taskId)
+    const filteredTasks = state.tasks.filter((task: Task) => task._id !== action.taskId);
 
     return {
       ...state,
       tasks: filteredTasks
-    }
+    };
   }
-
   case SUCCESS_TYPE_ENUM.UPDATE_TASK_SUCCESS: {
     state.isLoading = false;
     state.isSuccess = true;
 
-    const updatedTasks: Task[] = state.tasks.map(task =>
+    const updatedTasks = state.tasks.map(task =>
     {
       if (task._id === action.task._id) {
         return {
-          ...task, text: action.task.text, isChecked: action.task.isChecked
-        }
+          ...task, isChecked: action.task.isChecked, text: action.task.text
+        };
       }
-      return task
-    })
-
+      return task;
+    });
+    console.log(state);
     return {
       ...state,
       tasks: updatedTasks
@@ -80,9 +79,9 @@ export const todoReducer = (state = initialState, action: TodoActions): AppType 
     state.isError = true;
     return {
       ...state
-    }
+    };
   }
   default:
-    return state
+    return state;
   }
-}
+};

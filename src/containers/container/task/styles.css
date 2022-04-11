@@ -1,4 +1,4 @@
-.todoItem{
+.task{
     display: flex;
     gap: 10px;
     padding: 15px;
@@ -7,14 +7,14 @@
     align-items: center;
 
 }
-.leftPartTodoItem {
+.leftPartTask {
     display: flex;
     gap: 10px;
     align-items: center;
 }
 
 .deleteButton {
-    background-image: url("../../media/trash-can.svg");
+    background-image: url("../../../assets/icons/task/trash-can.svg");
     background-color: white;
     background-size: cover;
     width: 25px;
@@ -23,7 +23,7 @@
     border: none;
 }
 
-.todoText {
+.tasksText {
     padding: 5px 10px;
 }
 

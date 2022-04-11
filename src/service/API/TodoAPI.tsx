@@ -5,13 +5,13 @@ class TodoAPI {
   async getAllTasks(): Promise<Task[] | undefined> {
     try {
       const response = await fetch(env.TODO_URL);
-      return response.json()
+      return response.json();
     } catch(error) {
-      console.log('getAll task' + error)
+      console.log('getAll task' + error);
     }
   }
 
-  async createTask(task: Task): Promise <string | undefined> {
+  async createTask(task: Omit<Task, '_id'>): Promise <Task | undefined> {
     try {
       const response = await fetch(env.TODO_URL, {
         method: 'POST',
@@ -23,10 +23,10 @@ class TodoAPI {
           text : task.text,
           isChecked: task.isChecked
         })
-      })
-      return response.json()
+      });
+      return response.json();
     } catch(error) {
-      console.log('Create task' + error)
+      console.log('Create task' + error);
     }
   }
   async deleteTask (taskId: string): Promise<void> {
@@ -34,13 +34,12 @@ class TodoAPI {
       console.log(env.TODO_URL + taskId);
       await fetch(env.TODO_URL + taskId, {
         method: 'DELETE'
-      })
+      });
     } catch(error) {
-      console.log('Delete task error ', error)
+      console.log('Delete task error ', error);
     }
   }
   async updateTasks(task: Task): Promise <string | undefined> {
-    console.log(task.text, task._id);
     try {
       const response = await fetch(env.TODO_URL, {
         method: 'PUT',
@@ -55,7 +54,7 @@ class TodoAPI {
       });
       return response.json();
     } catch(error) {
-      console.log('updateTasks error' + error)
+      console.log('updateTasks error' + error);
     }
   }
 }

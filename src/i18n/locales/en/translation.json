@@ -1,0 +1,11 @@
+{
+  "translation": {
+    "title": "Todo list",
+    "button": "Login",
+    "header": "Sign in",
+    "user": "User",
+    "password": "Password",
+    "errorMsg": "Wrong password or user name",
+    "addButton": "+ New task"
+  }
+}

@@ -1,0 +1,25 @@
+.textError {
+    display: none;
+    color: #ec1400;
+}
+.crossTask {
+    text-decoration: line-through;
+}
+
+.notCrossTask {
+    text-decoration: none;
+}
+.login {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    background-color: white;
+    width: 500px;
+    height: max-content;
+    padding: 60px 40px;
+}
+.headerTitle {
+    font-size: 15pt;
+    font-weight: bold;
+    text-align: center;
+}
